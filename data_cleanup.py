@@ -2,33 +2,33 @@ from prompter import prompter
 
 VALUATE_PROMPT = 'Give me a precise decimal value of how important you think this sentence is between 0 and 1. Only give me the number.: '
 
-def master_cleanup(list):
-    print(list)
+def master_cleanup(lst):
+    print(lst)
     print("hola start")
-    list = manual_cleanup(list)
+    lst = manual_cleanup(lst)
     print("Manual Cleanup Completed")
-    print(list)
-    list = prompted_cleanup(list)
+    print(lst)
+    lst = prompted_cleanup(lst)
     print("Prompted Cleanup Completed")
-    print(list)
+    print(lst)
     # list = prompted_cleanup(list)
 
-    return list
+    return lst
 
-def manual_cleanup(list, word_count = 5):
+def manual_cleanup(lst, word_count = 5):
     filler_words = ['um', 'uh', 'er', 'like', 'well', 'you know', 'so', 'anyway', 'i mean', 'actually', 'basically', 'literally', 'kind of', 'sort of', 'right', 'exactly', 'right', 'yeah', 'mhmm', 'hmm', 'thank you', 'thank you so much', 'thank you very much', 'I\'m with you']
-    list = remove_small_sentences(list, word_count)
-    list = remove_filler(list, filler_words, 0.5)
-    return list
+    lst = remove_small_sentences(lst, word_count)
+    lst = remove_filler(lst, filler_words, 0.5)
+    return lst
 
-def remove_small_sentences(list, word_count):
-    list = [item for item in list if len(item['text'].split()) >= word_count]
-    return list
+def remove_small_sentences(lst, word_count):
+    lst = [item for item in lst if len(item['text'].split()) >= word_count]
+    return lst
 
-def remove_filler(list, fillers, filler_percentage=0.5):
+def remove_filler(lst, fillers, filler_percentage=0.5):
     filtered_list = []
     
-    for item in list:
+    for item in lst:
         if 'text' not in item:
             continue
         
@@ -56,17 +56,19 @@ def remove_filler(list, fillers, filler_percentage=0.5):
         if modified_length / original_length >= filler_percentage:
             filtered_list.append(item)
     
-    list[:] = filtered_list
-    return list
+    lst[:] = filtered_list
+    return lst
 
-def prompted_cleanup(list, threshold=0.8):
+def prompted_cleanup(lst, threshold=0.8):
     cleaned_list = []
-    for item in list:
+    for item in lst:
         try:
-            # Prompt user for input and convert it to a float
-            user_input = float(prompter.prompt(VALUATE_PROMPT, item['text']).strip())
+            # Prompt user for input
+            user_input = prompter.prompt(VALUATE_PROMPT, item['text']).strip()
+            # Convert the input to a float
+            user_input_float = float(user_input)
             # Check if the input is above or equal to the threshold
-            if user_input >= threshold:
+            if user_input_float >= threshold:
                 cleaned_list.append(item)
         except ValueError:
             print("Invalid input! Please provide a valid decimal number between 0 and 1.")
