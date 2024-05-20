@@ -19,9 +19,9 @@ def process_texts_single_prompt(text):
     prompt_categorize = "Reply in one word only. Is this statement a \'Information\' \'Decision\', or \'Action Item\': " + str(text)
 
     summary = prompter.prompt(prompt_summarize)
-    print(summary)
+    print("summary: " + summary)
     category = prompter.prompt(prompt_categorize)
-    print(category)
+    print("category: " + category)
     
     print()
     print()

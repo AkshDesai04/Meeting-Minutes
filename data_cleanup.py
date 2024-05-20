@@ -60,7 +60,7 @@ def remove_filler(lst, fillers, filler_percentage=0.5):
     lst[:] = filtered_list
     return lst
 
-def prompted_cleanup(lst, threshold=0.8):
+def prompted_cleanup(lst, threshold=0.9):
     cleaned_list = []
     for item in lst:
         try:
