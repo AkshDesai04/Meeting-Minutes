@@ -6,15 +6,17 @@ def master_cleanup(list):
     print(list)
     print("hola start")
     list = manual_cleanup(list)
+    print("Manual Cleanup Completed")
     print(list)
-    print("hola end")
+    list = prompted_cleanup(list)
+    print("Prompted Cleanup Completed")
+    print(list)
     # list = prompted_cleanup(list)
 
     return list
 
 def manual_cleanup(list, word_count = 5):
-
-    filler_words = ['um', 'uh', 'er', 'like', 'well', 'you know', 'so', 'anyway', 'i mean', 'actually', 'basically', 'literally', 'kind of', 'sort of', 'right', 'exactly', 'right', 'yeah', 'mhmm', 'hmm', 'thank you', 'thank you so much', 'thank you very much']
+    filler_words = ['um', 'uh', 'er', 'like', 'well', 'you know', 'so', 'anyway', 'i mean', 'actually', 'basically', 'literally', 'kind of', 'sort of', 'right', 'exactly', 'right', 'yeah', 'mhmm', 'hmm', 'thank you', 'thank you so much', 'thank you very much', 'I\'m with you']
     list = remove_small_sentences(list, word_count)
     list = remove_filler(list, filler_words, 0.5)
     return list
@@ -23,16 +25,39 @@ def remove_small_sentences(list, word_count):
     list = [item for item in list if len(item['text'].split()) >= word_count]
     return list
 
-def remove_filler(text_items, fillers, filler_percentage=0.5):
-    filtered_items = []
-    for item in text_items:
-        text_words = item['text'].lower().split()  # Convert text to lowercase before splitting
-        contains_filler = any(filler.lower() in text_words for filler in fillers)  # Convert fillers to lowercase for comparison
-        text_length = len(text_words)
-        filler_threshold = text_length * (1 - filler_percentage)
-        if not contains_filler and text_length >= filler_threshold:
-            filtered_items.append(item)
-    return filtered_items
+def remove_filler(list, fillers, filler_percentage=0.5):
+    filtered_list = []
+    
+    for item in list:
+        if 'text' not in item:
+            continue
+        
+        original_text = item['text']
+        modified_text = original_text
+        
+        # Convert both original text and fillers to lowercase
+        original_text_lower = original_text.lower()
+        fillers_lower = [filler.lower() for filler in fillers]
+        
+        # Remove fillers from the modified text while preserving case
+        for filler in fillers_lower:
+            modified_text = original_text_lower.replace(filler, '')
+        
+        original_length = len(original_text)
+        modified_length = len(original_text_lower)
+
+        print(original_text)
+        print(modified_length / original_length)
+        print(modified_length / original_length >= filler_percentage)
+        print()
+        print()
+        print()
+
+        if modified_length / original_length >= filler_percentage:
+            filtered_list.append(item)
+    
+    list[:] = filtered_list
+    return list
 
 def prompted_cleanup(list, threshold=0.8):
     for item in list:
