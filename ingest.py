@@ -2,9 +2,11 @@ import re
 
 def parse_text_file(file_path):
     entries = []
+    print("Printing File")
     with open(file_path, 'r') as file:
         entry = {}
         for line in file:
+            print(line)
             if '-->' in line:
                 start, end = re.findall(r'(\d+:\d+:\d+\.\d+)', line)
                 entry['timing'] = (start, end)
@@ -12,8 +14,10 @@ def parse_text_file(file_path):
                 entry['speaker'] = line.strip()
                 text = next(file).strip()
                 entry['text'] = text
+                entry.setdefault('timing', None)  # Ensure 'timing' key exists
                 entries.append(entry)
                 entry = {}
+    print("Printed File")
     return entries
 
 def format_output(entries):
