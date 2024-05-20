@@ -21,9 +21,8 @@ def process_texts_single_prompt(text):
     # print(prompt_categorize)
 
     summary = prompter.prompt(prompt_summarize)
-    category = prompter.prompt(prompt_categorize)
-
     print(summary)
+    category = prompter.prompt(prompt_categorize)
     print(category)
     
     print("Statement: " + text)
