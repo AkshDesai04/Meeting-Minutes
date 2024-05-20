@@ -16,9 +16,9 @@ def process_texts(list):
 def process_texts_single_prompt(text):
     print(text)
     prompt_summarize = "Summarize this sentence for me: " + str(text)
-    print(prompt_summarize)
+    # print(prompt_summarize)
     prompt_categorize = "Is this sentence a \'Information\' \'Decision\', or \'Action Item\': " + str(text)
-    print(prompt_categorize)
+    # print(prompt_categorize)
 
     summary = prompter.prompt(prompt_summarize)
     category = prompter.prompt(prompt_categorize)

@@ -10,6 +10,6 @@ def main():
     file_content = data_cleanup.master_cleanup(file_content)
     print(file_content)
 
-    # process_texts(list)
+    process_texts(list)
 
 main()
