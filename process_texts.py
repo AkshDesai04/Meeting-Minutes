@@ -14,17 +14,15 @@ def process_texts(list):
 
         
 def process_texts_single_prompt(text):
-    print(text)
-    prompt_summarize = "Simplify this statement in less with 15 words: " + str(text)
-    # print(prompt_summarize)
+    print("Statement: " + text)
+    prompt_summarize = "Summarize this statement in less with 10 words: " + str(text)
     prompt_categorize = "Reply in one word only. Is this statement a \'Information\' \'Decision\', or \'Action Item\': " + str(text)
-    # print(prompt_categorize)
 
     summary = prompter.prompt(prompt_summarize)
     print(summary)
     category = prompter.prompt(prompt_categorize)
     print(category)
     
-    print("Statement: " + text)
-    print("Summary: " + summary)
-    print("Category: " + category)
+    print()
+    print()
+    print()
