@@ -14,17 +14,18 @@ def process_texts(list):
 
         
 def process_texts_single_prompt(text):
-    prompt_summarize = "Summarize this sentence for me: " + str(text['text'])
+    print(text)
+    prompt_summarize = "Summarize this sentence for me: " + str(text)
     print(prompt_summarize)
-    prompt_categorize = "Is this sentence a \'Information\' \'Decision\', or \'Action Item\': " + str(text['text'])
+    prompt_categorize = "Is this sentence a \'Information\' \'Decision\', or \'Action Item\': " + str(text)
     print(prompt_categorize)
 
-    # summary = prompter.prompt(prompt_summarize)
-    # category = prompter.prompt(prompt_categorize)
+    summary = prompter.prompt(prompt_summarize)
+    category = prompter.prompt(prompt_categorize)
 
-    # print(summary)
-    # print(category)
+    print(summary)
+    print(category)
     
-    # print("Statement: " + str(text['text']))
-    # print("Summary: " + summary)
-    # print("Category: " + category)
+    print("Statement: " + text)
+    print("Summary: " + summary)
+    print("Category: " + category)
