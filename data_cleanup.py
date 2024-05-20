@@ -1,4 +1,5 @@
 from prompter import prompter
+from process_texts import process_texts
 
 VALUATE_PROMPT = 'Only reply with a decimal number. Give me a decimal value of how important you think this sentence is between 0 and 1.: '
 
@@ -71,6 +72,9 @@ def prompted_cleanup(lst, threshold=0.8):
             user_input_float = float(user_input)
             # Check if the input is above or equal to the threshold
             if user_input_float >= threshold:
+                # Temp
+                process_texts(list)
+                # Temp
                 cleaned_list.append(item)
         except ValueError:
             print("Invalid input! Please provide a valid decimal number between 0 and 1.")
