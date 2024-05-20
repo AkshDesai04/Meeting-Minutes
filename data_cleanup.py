@@ -44,7 +44,7 @@ def remove_filler(list, fillers, filler_percentage=0.5):
             modified_text = original_text_lower.replace(filler, '')
         
         original_length = len(original_text)
-        modified_length = len(original_text_lower)
+        modified_length = len(modified_text)
 
         print(original_text)
         print(modified_length / original_length)
@@ -60,7 +60,14 @@ def remove_filler(list, fillers, filler_percentage=0.5):
     return list
 
 def prompted_cleanup(list, threshold=0.8):
+    cleaned_list = []
     for item in list:
-        if float(prompter.prompt(VALUATE_PROMPT, item['text']).strip()) < threshold:
-            list.remove(item)
-    return list
+        try:
+            # Prompt user for input and convert it to a float
+            user_input = float(prompter.prompt(VALUATE_PROMPT, item['text']).strip())
+            # Check if the input is above or equal to the threshold
+            if user_input >= threshold:
+                cleaned_list.append(item)
+        except ValueError:
+            print("Invalid input! Please provide a valid decimal number between 0 and 1.")
+    return cleaned_list
