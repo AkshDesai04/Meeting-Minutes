@@ -1,6 +1,6 @@
 from prompter import prompter
 
-VALUATE_PROMPT = 'Give me a precise decimal value of how important you think this sentence is between 0 and 1. Only give me the number.: '
+VALUATE_PROMPT = 'Only reply with a decimal number. Give me a decimal value of how important you think this sentence is between 0 and 1.: '
 
 def master_cleanup(lst):
     print(lst)
