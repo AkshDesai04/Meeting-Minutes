@@ -64,7 +64,8 @@ def prompted_cleanup(lst, threshold=0.8):
     for item in lst:
         try:
             # Prompt user for input
-            user_input = prompter.prompt(VALUATE_PROMPT, item['text']).strip()
+            temp = prompter.prompt(VALUATE_PROMPT, item['text'])
+            user_input = temp.strip()
             # Convert the input to a float
             user_input_float = float(user_input)
             # Check if the input is above or equal to the threshold
