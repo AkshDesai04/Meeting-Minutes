@@ -61,6 +61,6 @@ def remove_filler(list, fillers, filler_percentage=0.5):
 
 def prompted_cleanup(list, threshold=0.8):
     for item in list:
-        if int(prompter.prompt(VALUATE_PROMPT, item['text']).trim()) < threshold:
+        if float(prompter.prompt(VALUATE_PROMPT, item['text']).trim()) < threshold:
             list.remove(item)
     return list
