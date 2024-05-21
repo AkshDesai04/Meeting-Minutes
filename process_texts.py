@@ -1,4 +1,4 @@
-from prompter import prompter
+import prompter
 
 def process_texts(list):
     for text in list:
