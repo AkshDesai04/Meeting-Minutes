@@ -1,4 +1,4 @@
-from prompter import prompter
+import prompter
 from process_texts import process_texts_single_prompt
 
 VALUATE_PROMPT = 'Only reply with a decimal number. Give a decimal value of the importance of this sentence between 0 and 1: '
