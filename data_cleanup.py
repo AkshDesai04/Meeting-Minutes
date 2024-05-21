@@ -65,8 +65,8 @@ def prompted_cleanup(lst, threshold=0.9):
     for item in lst:
         try:
             # Prompt user for input
-            temp = prompter.prompt(VALUATE_PROMPT + item['text'])
-            # temp = " 0.9 "
+            # temp = prompter.prompt(VALUATE_PROMPT + item['text'])
+            temp = " 0.9 "
             print("temp: ", temp)
             user_input = temp.strip()
             # Convert the input to a float
