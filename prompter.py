@@ -1,7 +1,7 @@
 import tensorflow as tf
 from transformers import TFAutoModelForCausalLM, AutoTokenizer
 
-def prompt(input, temperature = 0):
+def prompt(input):
     
     hf_token = "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"  # e.g., "YOUR_HUGGINGFACE_TOKEN"
 
@@ -30,4 +30,5 @@ def prompt(input, temperature = 0):
     # Decode the outputs
     generated_text = tokenizer.decode(outputs[0], skip_special_tokens=True)
     print("Response: " + generated_text)
+    return generated_text
     print("--------------------Ending--------------------")
