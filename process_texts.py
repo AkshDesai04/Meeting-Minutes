@@ -18,10 +18,10 @@ def process_texts_single_prompt(text):
     prompt_summarize = "Summarize this statement in less with 10 words: " + str(text)
     prompt_categorize = "Reply in one word only. Is this statement a \'Information\' \'Decision\', or \'Action Item\': " + str(text)
 
-    # summary = prompter.prompt(prompt_summarize)
-    # print("summary: " + summary)
-    # category = prompter.prompt(prompt_categorize)
-    # print("category: " + category)
+    summary = prompter.prompt(prompt_summarize)
+    print("summary: " + summary)
+    category = prompter.prompt(prompt_categorize)
+    print("category: " + category)
     
     print()
     print()
