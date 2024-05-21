@@ -26,7 +26,7 @@ def prompt(inputs):
     for input_text in inputs:
         try:
             # Tokenize the prompt
-            print("Input: " + input_text)
+            print("---------------------------------Input: " + input_text)
             inputs = tokenizer(input_text, return_tensors="tf")
 
             # Generate outputs
@@ -37,7 +37,7 @@ def prompt(inputs):
             print("Response: " + generated_text)
             generated_texts.append(generated_text)
 
-            print("Output: " + generated_text)
+            print("---------------------------------Output: " + generated_text)
         
         except Exception as e:
             generated_texts.append("")
