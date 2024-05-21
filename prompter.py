@@ -21,7 +21,7 @@ def prompt(inputs):
 
     print("--------------------Starting--------------------")
     
-    generated_texts = []
+    generated_texts = ""
 
     print("===========================inputs: " + str(inputs))
 
@@ -37,12 +37,12 @@ def prompt(inputs):
         # Decode the outputs
         generated_text = tokenizer.decode(outputs[0], skip_special_tokens=True)
         print("Response: " + generated_text)
-        generated_texts.append(generated_text)
+        generated_texts = generated_text
 
         print("---------------------------------Output: " + generated_text)
     
     except Exception as e:
-        generated_texts.append("")
+        generated_texts = ""
 
     print("--------------------Ending--------------------")
     
