@@ -1,7 +1,7 @@
 import tensorflow as tf
 from transformers import TFAutoModelForCausalLM, AutoTokenizer
 
-def prompt(input):
+def prompt(inputs):
     
     hf_token = "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"  # e.g., "YOUR_HUGGINGFACE_TOKEN"
 
@@ -20,15 +20,21 @@ def prompt(input):
     model.trainable = False
 
     print("--------------------Starting--------------------")
+    
+    generated_texts = []
 
-    # Tokenize the prompt
-    inputs = tokenizer(input, return_tensors="tf")
+    for input_text in inputs:
+        # Tokenize the prompt
+        inputs = tokenizer(input_text, return_tensors="tf")
 
-    # Generate outputs
-    outputs = model.generate(inputs["input_ids"], max_length=100)
+        # Generate outputs
+        outputs = model.generate(inputs["input_ids"], max_length=100)
 
-    # Decode the outputs
-    generated_text = tokenizer.decode(outputs[0], skip_special_tokens=True)
-    print("Response: " + generated_text)
-    return generated_text
+        # Decode the outputs
+        generated_text = tokenizer.decode(outputs[0], skip_special_tokens=True)
+        print("Response: " + generated_text)
+        generated_texts.append(generated_text)
+
     print("--------------------Ending--------------------")
+    
+    return generated_texts
