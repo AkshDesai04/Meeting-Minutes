@@ -25,7 +25,7 @@ def prompt(input, temperature = 0):
     inputs = tokenizer(input, return_tensors="tf")
 
     # Generate outputs
-    outputs = model.generate(inputs["input_ids"], max_length=50)
+    outputs = model.generate(inputs["input_ids"], max_length=100)
 
     # Decode the outputs
     generated_text = tokenizer.decode(outputs[0], skip_special_tokens=True)
