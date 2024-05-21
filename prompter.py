@@ -23,6 +23,8 @@ def prompt(inputs):
     
     generated_texts = []
 
+    print("===========================inputs: " + str(inputs)
+
     for input_text in inputs:
         try:
             # Tokenize the prompt
