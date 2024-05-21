@@ -28,8 +28,8 @@ def prompt(inputs):
     # for input_text in inputs:
     try:
         # Tokenize the prompt
-        print("---------------------------------Input: " + input_text)
-        inputs = tokenizer(input_text, return_tensors="tf")
+        print("---------------------------------Input: " + inputs)
+        inputs = tokenizer(inputs, return_tensors="tf")
 
         # Generate outputs
         outputs = model.generate(inputs["input_ids"], max_length=50)
