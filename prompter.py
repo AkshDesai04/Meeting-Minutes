@@ -25,24 +25,24 @@ def prompt(inputs):
 
     print("===========================inputs: " + str(inputs))
 
-    for input_text in inputs:
-        try:
-            # Tokenize the prompt
-            print("---------------------------------Input: " + input_text)
-            inputs = tokenizer(input_text, return_tensors="tf")
+    # for input_text in inputs:
+    try:
+        # Tokenize the prompt
+        print("---------------------------------Input: " + input_text)
+        inputs = tokenizer(input_text, return_tensors="tf")
 
-            # Generate outputs
-            outputs = model.generate(inputs["input_ids"], max_length=50)
+        # Generate outputs
+        outputs = model.generate(inputs["input_ids"], max_length=50)
 
-            # Decode the outputs
-            generated_text = tokenizer.decode(outputs[0], skip_special_tokens=True)
-            print("Response: " + generated_text)
-            generated_texts.append(generated_text)
+        # Decode the outputs
+        generated_text = tokenizer.decode(outputs[0], skip_special_tokens=True)
+        print("Response: " + generated_text)
+        generated_texts.append(generated_text)
 
-            print("---------------------------------Output: " + generated_text)
-        
-        except Exception as e:
-            generated_texts.append("")
+        print("---------------------------------Output: " + generated_text)
+    
+    except Exception as e:
+        generated_texts.append("")
 
     print("--------------------Ending--------------------")
     
