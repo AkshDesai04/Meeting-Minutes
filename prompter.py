@@ -1,4 +1,5 @@
-from gpt4all import GPT4All
+import tensorflow as tf
+from transformers import TFAutoModelForCausalLM, AutoTokenizer
 
 def prompt(input, temperature = 0):
     
