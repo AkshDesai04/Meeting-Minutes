@@ -46,4 +46,4 @@ def prompt(inputs):
 
     print("--------------------Ending--------------------")
     
-    return generated_texts
+    return generated_text
